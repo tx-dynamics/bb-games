@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import MainScreen from './components/Game/MainScreen/mainScreen';
+import Home from './components/Project/index'
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [Auth, setAuth] = useState('Unauthorized')
+
+  useEffect(() => {
+    const auth = window.sessionStorage.getItem('Auth')
+    if(auth === 'Authorized'){
+      setAuth('Authorized')
+    }
+  }, [Auth])
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        Auth === 'Unauthorized' ?
+        <Router>
+          <Routes>
+            <Route path='/*' element = {<MainScreen />}/>
+          </Routes>
+        </Router> :
+        <Router>
+          <Routes>
+            <Route path='/home' element = {<Home/>}/>
+            <Route path='/*' element = {<MainScreen />}/>
+          </Routes>
+        </Router>
+      }
+      
     </div>
   );
 }
