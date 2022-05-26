@@ -7,6 +7,7 @@
     background-image: url('../Images/background.jpg');
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
 
 
     .gird-layout{
@@ -75,7 +76,13 @@
 
         .center-div{
 
-            img{
+            .logo-img-div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .logo-img{
                 height: 378.16748046875px;
                 width: 324.5631408691406px;
                 border-radius: 0px;
@@ -89,12 +96,7 @@
                     color: #ffffff;
                 }
 
-                h1{
-                    font-size: 4em;
-                    font-weight: bolder;
-                }
-
-                h1:hover{
+                img:hover{
                     cursor: pointer;
                 }
             }
@@ -112,14 +114,14 @@
                     align-items: center;
                 }
 
-                h1{
-                    font-family: 'Kanit';
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 49.8361px;
-                    line-height: 75px;
-                    margin: 0%;
-                    color: #E7EC00;                    
+                .PlayText{
+                    height: 102.50959014892578px;
+                    width: 409.5885314941406px;
+                }
+
+                .LoseText{
+                    height: 103.87625122070312px;
+                    width: 317.8892517089844px;
                 }
 
                 .hover-effect{
@@ -139,10 +141,13 @@
                 }
 
                 .shapes-div{
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-auto-rows: auto;
-                    grid-gap: 6rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .spacer{
+                    width: 70px;
                 }
 
                 .box{
@@ -156,8 +161,8 @@
                 }
 
                 .triangle{
-                    width: 100px;
-                    height: 100px;
+                    width: 120px;
+                    height: 120px;
                 }
 
                 .triangle:hover{
@@ -182,6 +187,12 @@
 
                 .red{
                     background: linear-gradient(180deg, rgba(153, 36, 61, 0.55) 0%, rgba(213, 28, 59, 0.61) 100%);
+                    border: 2.76108px solid #000000;
+                    box-shadow: -2.76108px 2.76108px 0px #000000;
+                }
+
+                .green{
+                    background: linear-gradient(180deg, rgba(44, 153, 36, 0.55) 0%, rgba(44, 213, 28, 0.61) 100%);
                     border: 2.76108px solid #000000;
                     box-shadow: -2.76108px 2.76108px 0px #000000;
                 }

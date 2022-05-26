@@ -13,8 +13,9 @@
 
     .sideWave-img{
         position: absolute;
-        top: 0%;
-        right: 0%;
+        right: 0px;
+        top: 0px;
+        height: 100vh;
     }
 
     .bigCircles-img{
@@ -42,10 +43,10 @@
 
     .lock-img{
         position: absolute;
-        height: 161.00000138234648px;
-        width: 140.00000120204044px;
-        left: 1182px;
-        top: 555.101318359375px;
+        height: 200px;
+        width: 170px;
+        right: 90px;
+        bottom: 190px;
         border-radius: 0px;
     }
 
@@ -53,14 +54,14 @@
         position: absolute;
         height: 484px;
         width: 484px;
-        left: 796px;
-        top: 56px;
+        right: 180px;
+        top: 120px;
         border-radius: 0px;
     }
 
     .introduction-div{
         position: absolute;
-        top: 150px;
+        top: 280px;
         left: 200px;
 
         p{
