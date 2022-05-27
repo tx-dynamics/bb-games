@@ -25,17 +25,22 @@
                 background: rgba(80, 96, 112, 0.3);
                 border-radius: 4.37417px;
                 color: white;
-                height: 80px;
+                height: 100px;
                 width: 238px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
 
+                span {
+                    padding: 0px 5px;
+                    font-weight: 600;
+                    font-size: 1.2em;
+                }
+
                 img{
                     height: 42px;
                     width: 26.272531509399414px;
                     border-radius: 0px;
-
                 }
             }
 
@@ -179,6 +184,24 @@
                     cursor: pointer;
                 }
 
+                .polygon{
+                    width: 120px;
+                    height: 130px;
+                }
+
+                .polygon:hover{
+                    cursor: pointer;
+                }
+
+                .pentagon{
+                    width: 120px;
+                    height: 110px;
+                }
+
+                .pentagon:hover{
+                    cursor: pointer;
+                }
+
                 .yellow{
                     background: linear-gradient(360deg, #B2802B 0.35%, #FEC960 100%);
                     border: 2.76108px solid #000000;
@@ -208,15 +231,20 @@
                 background: rgba(80, 96, 112, 0.3);
                 border-radius: 4.37417px;
                 color: white;
-                height: 80px;
+                height: 100px;
                 width: 238px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
 
+                span {
+                    padding: 0px 5px;
+                    font-weight: 600;
+                    font-size: 1.2em;
+                }
+
                 img{
-                    height: 37.28506851196289px;
-                    width: 32px;
+                    height: 50px;
                     border-radius: 0px;
 
                 }

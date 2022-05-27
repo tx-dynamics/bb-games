@@ -12,6 +12,13 @@ import redTriangle from './Images/red_triangle.png'
 import PlayText from './Images/PlayText.png'
 import LoseText from './Images/LoseText.png'
 import EnterText from './Images/EnterText.gif'
+import PentagonGreen from './Images/Pentagon-Green.png'
+import PentagonRed from './Images/Pentagon-Red.png'
+import PentagonYellow from './Images/Pentagon-Yellow.png'
+import PolygonGreen from './Images/Polygon-Green.png'
+import PolygonRed from './Images/Polygon-Red.png'
+import PolygonYellow from './Images/Polygon-Yellow.png'
+import TriangleGreen from './Images/Triangle-Green.png'
 import { AiOutlineRight } from 'react-icons/ai';
 
 function MainScreen() {
@@ -145,6 +152,26 @@ const getDeadTime = () => {
           window.sessionStorage.setItem('B1selectedColor', 'yellow')
           window.sessionStorage.setItem('B2selectedColor', 'yellow')
         }else if(shape === 'Circle'){
+          setLock(false)
+          setShape('Polygon')
+          setmessage('You have to play a quick game to enter in the project')
+          setB1SelectedColor('yellow')
+          setB2SelectedColor('yellow')
+          window.sessionStorage.setItem('shape', 'Polygon')
+          window.sessionStorage.setItem('message', 'You have to play a quick game to enter in the project')
+          window.sessionStorage.setItem('B1selectedColor', 'yellow')
+          window.sessionStorage.setItem('B2selectedColor', 'yellow')
+        }else if(shape === 'Polygon'){
+          setLock(false)
+          setShape('Pentagon')
+          setmessage('You have to play a quick game to enter in the project')
+          setB1SelectedColor('yellow')
+          setB2SelectedColor('yellow')
+          window.sessionStorage.setItem('shape', 'Pentagon')
+          window.sessionStorage.setItem('message', 'You have to play a quick game to enter in the project')
+          window.sessionStorage.setItem('B1selectedColor', 'yellow')
+          window.sessionStorage.setItem('B2selectedColor', 'yellow')
+        }else if(shape === 'Pentagon'){
           window.sessionStorage.clear()
           window.sessionStorage.setItem('Auth', 'Authorized')
           navigate("/home");
@@ -244,29 +271,119 @@ const getDeadTime = () => {
                               {
                                 lock ?
                                 <div>
-                                  <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/>
+                                  {
+                                    B2selectedColor === 'yellow' ?
+                                    <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
+                                    <img className='triangle' src={TriangleGreen} alt='greenTriangle'/>
+                                  }
                                 </div> :
                                 <div>
                                   {
                                     B2selectedColor === 'green' ?
-                                    <img className='triangle' onClick={() => handleColor('green')} src={yellowTriangle} alt='greenTriangle'/> :
+                                    <img className='triangle' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
                                     <img className='triangle' onClick={() => handleColor('green')} src={yellowTriangle} alt='yellowTriangle'/>
                                   }
                                 </div>
                               }
                               
                             </div> : 
-                            <div className='shapes-div'>
+                            <div>
                               {
-                                lock ?
-                                <div className={`circle ${B1selectedColor}`}/> :
-                                <div onClick={() => handleColor('red')} className={`circle ${B1selectedColor}`}/>
-                              }
-                              <div className='spacer'/>
-                              {
-                                lock ?
-                                <div className={`circle ${B2selectedColor}`}/> :
-                                <div onClick={() => handleColor('green')} className={`circle ${B2selectedColor}`}/>
+                                shape === 'Circle' ?
+                                <div className='shapes-div'>
+                                  {
+                                    lock ?
+                                    <div className={`circle ${B1selectedColor}`}/> :
+                                    <div onClick={() => handleColor('red')} className={`circle ${B1selectedColor}`}/>
+                                  }
+                                  <div className='spacer'/>
+                                  {
+                                    lock ?
+                                    <div className={`circle ${B2selectedColor}`}/> :
+                                    <div onClick={() => handleColor('green')} className={`circle ${B2selectedColor}`}/>
+                                  }
+                                </div> : 
+                                <div>
+                                  {
+                                    shape === 'Polygon' ?
+                                    <div className='shapes-div'>
+                                      {
+                                        lock ?
+                                        <div>
+                                          {
+                                            B1selectedColor === 'yellow' ?
+                                            <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
+                                            <img className='polygon' src={PolygonRed} alt='PolygonRed'/>
+                                          }
+                                        </div> :
+                                        <div>
+                                          {
+                                            B1selectedColor === 'yellow' ?
+                                            <img className='polygon' onClick={() => handleColor('red')} src={PolygonYellow} alt='PolygonYellow'/> :
+                                            <img className='polygon' onClick={() => handleColor('red')} src={PolygonRed} alt='PolygonRed'/>
+                                          }
+                                        </div>
+                                      }
+                                      <div className='spacer'/>
+                                      {
+                                        lock ?
+                                        <div>
+                                          {
+                                            B2selectedColor === 'yellow' ?
+                                            <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
+                                            <img className='polygon' src={PolygonGreen} alt='PolygonGreen'/>
+                                          }
+                                        </div> :
+                                        <div>
+                                          {
+                                            B2selectedColor === 'green' ?
+                                            <img className='polygon' onClick={() => handleColor('green')} src={PolygonGreen} alt='PolygonGreen'/> :
+                                            <img className='polygon' onClick={() => handleColor('green')} src={PolygonYellow} alt='PolygonYellow'/>
+                                          }
+                                        </div>
+                                      }
+                                      
+                                    </div> : 
+                                    <div className='shapes-div'>
+                                      {
+                                        lock ?
+                                        <div>
+                                          {
+                                            B1selectedColor === 'yellow' ?
+                                            <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
+                                            <img className='pentagon' src={PentagonRed} alt='PentagonRed'/>
+                                          }
+                                        </div> :
+                                        <div>
+                                          {
+                                            B1selectedColor === 'yellow' ?
+                                            <img className='pentagon' onClick={() => handleColor('red')} src={PentagonYellow} alt='PentagonYellow'/> :
+                                            <img className='pentagon' onClick={() => handleColor('red')} src={PentagonRed} alt='PentagonRed'/>
+                                          }
+                                        </div>
+                                      }
+                                      <div className='spacer'/>
+                                      {
+                                        lock ?
+                                        <div>
+                                          {
+                                            B2selectedColor === 'yellow' ?
+                                            <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
+                                            <img className='pentagon' src={PentagonGreen} alt='PentagonGreen'/>
+                                          }
+                                        </div> :
+                                        <div>
+                                          {
+                                            B2selectedColor === 'green' ?
+                                            <img className='pentagon' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
+                                            <img className='pentagon' onClick={() => handleColor('green')} src={PentagonYellow} alt='PentagonGreen'/>
+                                          }
+                                        </div>
+                                      }
+                                      
+                                    </div>
+                                  }
+                                </div>
                               }
                             </div>
                           }
@@ -285,7 +402,7 @@ const getDeadTime = () => {
             <div className='right-div'>
                 <div className='top-div'>
                   <span><img src={SmallLogo} alt='small-logo'/></span>
-                  <span>Series <span>1</span></span>
+                  <span>Series 1</span>
                 </div>
                 <div className='img-div'>
                   <img src={RightImg} alt='right-img'/>
