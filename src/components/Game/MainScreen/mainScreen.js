@@ -19,11 +19,11 @@ import PolygonGreen from './Images/Polygon-Green.png'
 import PolygonRed from './Images/Polygon-Red.png'
 import PolygonYellow from './Images/Polygon-Yellow.png'
 import TriangleGreen from './Images/Triangle-Green.png'
-import { AiOutlineRight } from 'react-icons/ai';
+// import { AiOutlineRight } from 'react-icons/ai';
 
 function MainScreen() {
   const Ref = useRef(null);
-  const [phase, setPhase] = useState('Start')
+  const [phase, setPhase] = useState('Game')
   const [shape, setShape] = useState('Box')
   const [message, setmessage] = useState('You have to play a quick game to enter in the project')
   const [B1selectedColor, setB1SelectedColor] = useState('yellow')
@@ -68,8 +68,8 @@ function MainScreen() {
     if(window.sessionStorage.getItem('phase') === 'Wait'){
       clearTimer(getDeadTime());
     }
-    window.sessionStorage.getItem('phase') === null ? setPhase('Start') : setPhase(window.sessionStorage.getItem('phase'))
-    window.sessionStorage.getItem('message') === null ? setmessage('Click to enter to see the project') : setmessage(window.sessionStorage.getItem('message'))
+    window.sessionStorage.getItem('phase') === null ? setPhase('Game') : setPhase(window.sessionStorage.getItem('phase'))
+    window.sessionStorage.getItem('message') === null ? setmessage('You have to play a quick game to enter in the project') : setmessage(window.sessionStorage.getItem('message'))
     window.sessionStorage.getItem('shape') === null ? setShape('Box') : setShape(window.sessionStorage.getItem('shape'))
     window.sessionStorage.getItem('B1selectedColor') === null ? setB1SelectedColor('yellow') : setB1SelectedColor(window.sessionStorage.getItem('B1selectedColor'))
     window.sessionStorage.getItem('B2selectedColor') === null ? setB2SelectedColor('yellow') : setB2SelectedColor(window.sessionStorage.getItem('B2selectedColor'))
@@ -173,9 +173,9 @@ const getDeadTime = () => {
           window.sessionStorage.setItem('B2selectedColor', 'yellow')
         }else if(shape === 'Pentagon'){
           window.sessionStorage.clear()
-          window.sessionStorage.setItem('Auth', 'Authorized')
-          navigate("/home");
-          window.location.reload();
+          // window.sessionStorage.setItem('Auth', 'Authorized')
+          setPhase('Enter')
+          window.sessionStorage.setItem('phase', 'Enter')
         }else{
           alert('Invalid Shape Found!!')
         }
@@ -184,10 +184,10 @@ const getDeadTime = () => {
   }
 
   const handleEnter = () => {
-    setPhase('Game')
-    setmessage('You have to play a quick game to enter in the project')
-    window.sessionStorage.setItem("phase", "Game")
-    window.sessionStorage.setItem("message", "You have to play a quick game to enter in the project")
+    window.sessionStorage.clear()
+    window.sessionStorage.setItem('Auth', 'Authorized')
+    navigate("/intro");
+    window.location.reload();
   }
   
 
@@ -202,9 +202,9 @@ const getDeadTime = () => {
                 <div className='img-div'>
                   <img src={LeftImg} alt='left-img'/>
                 </div>
-                <div className='bottom-div'>
+                {/* <div className='bottom-div'>
                   <a href='#NFT'>Mint Your NFT <AiOutlineRight /></a>
-                </div>
+                </div> */}
             </div>
 
             <div className='center-div'>
@@ -213,7 +213,7 @@ const getDeadTime = () => {
               </div>
               
               {
-                phase === 'Start' ?
+                phase === 'Enter' ?
                 <div className='enter-text-div'>
                   <p>Click to enter to see the project</p>
                   <img onClick={handleEnter} src={EnterText} alt='enter text'/>
@@ -407,9 +407,9 @@ const getDeadTime = () => {
                 <div className='img-div'>
                   <img src={RightImg} alt='right-img'/>
                 </div>
-                <div className='bottom-div'>
+                {/* <div className='bottom-div'>
                   <a href='#NFT'>White List <AiOutlineRight /></a>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>
