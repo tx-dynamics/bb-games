@@ -64,28 +64,27 @@ function MainScreen() {
     },[startTimer],
   )
 
-  useEffect(() => {
-    if(window.sessionStorage.getItem('phase') === 'Wait'){
-      clearTimer(getDeadTime());
-    }
-    window.sessionStorage.getItem('phase') === null ? setPhase('Game') : setPhase(window.sessionStorage.getItem('phase'))
-    window.sessionStorage.getItem('message') === null ? setmessage('You have to play a quick game to enter in the project') : setmessage(window.sessionStorage.getItem('message'))
-    window.sessionStorage.getItem('shape') === null ? setShape('Box') : setShape(window.sessionStorage.getItem('shape'))
-    window.sessionStorage.getItem('B1selectedColor') === null ? setB1SelectedColor('yellow') : setB1SelectedColor(window.sessionStorage.getItem('B1selectedColor'))
-    window.sessionStorage.getItem('B2selectedColor') === null ? setB2SelectedColor('yellow') : setB2SelectedColor(window.sessionStorage.getItem('B2selectedColor'))
-  }, [phase, clearTimer])
+  const getDeadTime = () => {
+    let deadline = new Date();
+
+    // This is where you need to adjust if 
+    // you entend to add more time
+    const t = window.sessionStorage.getItem('time') === null ? 60 : parseInt(window.sessionStorage.getItem('time'))
+    deadline.setSeconds(deadline.getSeconds() + t);
+    return deadline;
+  }
 
   const getTimeRemaining = (e) => {
     const total = Date.parse(e) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
-    if(seconds === 0){
+    if(seconds <= 0){
       settimer('60')
-      window.sessionStorage.removeItem('time')
       window.sessionStorage.setItem('B1selectedColor', 'yellow')
       // const Shape = window.sessionStorage.getItem('shape') === null ? 'Box' : window.sessionStorage.getItem('shape')
       window.sessionStorage.setItem('phase', 'Game')
       // window.sessionStorage.setItem('shape', Shape)
       window.sessionStorage.setItem("message", "You have to play a quick game to enter in the project")
+      window.sessionStorage.removeItem('time')
       window.location.reload();
 
     }else{
@@ -96,21 +95,16 @@ function MainScreen() {
     };
   }
 
-  
-
-  
-
-const getDeadTime = () => {
-  let deadline = new Date();
-
-  // This is where you need to adjust if 
-  // you entend to add more time
-  const t = window.sessionStorage.getItem('time') === null ? 60 : parseInt(window.sessionStorage.getItem('time'))
-  deadline.setSeconds(deadline.getSeconds() + t);
-  return deadline;
-}
-
-  
+  useEffect(() => {
+    if(window.sessionStorage.getItem('phase') === 'Wait'){
+      clearTimer(getDeadTime());
+    }
+    window.sessionStorage.getItem('phase') === null ? setPhase('Game') : setPhase(window.sessionStorage.getItem('phase'))
+    window.sessionStorage.getItem('message') === null ? setmessage('You have to play a quick game to enter in the project') : setmessage(window.sessionStorage.getItem('message'))
+    window.sessionStorage.getItem('shape') === null ? setShape('Box') : setShape(window.sessionStorage.getItem('shape'))
+    window.sessionStorage.getItem('B1selectedColor') === null ? setB1SelectedColor('yellow') : setB1SelectedColor(window.sessionStorage.getItem('B1selectedColor'))
+    window.sessionStorage.getItem('B2selectedColor') === null ? setB2SelectedColor('yellow') : setB2SelectedColor(window.sessionStorage.getItem('B2selectedColor'))
+  }, [phase, clearTimer])
   
 
   const handleColor = (color) => {
