@@ -82,11 +82,12 @@ function MainScreen() {
       settimer('60')
       window.sessionStorage.removeItem('time')
       window.sessionStorage.setItem('B1selectedColor', 'yellow')
-      const Shape = window.sessionStorage.getItem('shape') === null ? 'Box' : window.sessionStorage.getItem('shape')
+      // const Shape = window.sessionStorage.getItem('shape') === null ? 'Box' : window.sessionStorage.getItem('shape')
       window.sessionStorage.setItem('phase', 'Game')
-      window.sessionStorage.setItem('shape', Shape)
+      // window.sessionStorage.setItem('shape', Shape)
       window.sessionStorage.setItem("message", "You have to play a quick game to enter in the project")
       window.location.reload();
+
     }else{
       window.sessionStorage.setItem('time', seconds)
     }
