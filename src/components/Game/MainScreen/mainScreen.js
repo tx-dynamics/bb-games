@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react'
 import { useNavigate } from "react-router-dom";
 import './Style/mainScrees.scss'
+import OrignalBackground from './Images/background.jpg'
+import blurImg from './Images/blur_game_background.jpeg'
 import Logo from './Images/Logo.png'
 import LeftImg from './Images/left_animation.gif'
 import RightImg from './Images/right_animation.gif'
@@ -19,9 +21,10 @@ import PolygonGreen from './Images/Polygon-Green.png'
 import PolygonRed from './Images/Polygon-Red.png'
 import PolygonYellow from './Images/Polygon-Yellow.png'
 import TriangleGreen from './Images/Triangle-Green.png'
+import ProgressiveImage from "react-progressive-graceful-image";
 // import { AiOutlineRight } from 'react-icons/ai';
 
-function MainScreen() {
+function MainScreen({setLoader}) {
   const Ref = useRef(null);
   const [phase, setPhase] = useState('Game')
   const [shape, setShape] = useState('Box')
@@ -46,6 +49,8 @@ function MainScreen() {
       } 
       },[],
   )
+
+  
 
   const clearTimer = useCallback((e) => {
       // If you adjust it you should also need to
@@ -193,6 +198,15 @@ function MainScreen() {
 
   return (
     <div className='mainScreen-outer-div'>
+        <ProgressiveImage className='background-img' src={OrignalBackground} placeholder={blurImg}>
+          {(src) => (
+            <img
+              className='background-img'
+              src={src}
+              alt="sea beach"
+            />
+          )}
+          </ProgressiveImage>
         <div className='gird-layout'>
             <div className='left-div'>
                 <div className='top-div'>

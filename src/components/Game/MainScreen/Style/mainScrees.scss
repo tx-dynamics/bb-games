@@ -1,21 +1,32 @@
+
 .mainScreen-outer-div{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/excelparser-5bf2f.appspot.com/o/bbGames%2Fbackground.jpg?alt=media&token=627a8f31-13b4-4370-a2e1-78995e850dd0');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    // background-image: url('https://firebasestorage.googleapis.com/v0/b/excelparser-5bf2f.appspot.com/o/bbGames%2Fbackground.jpg?alt=media&token=627a8f31-13b4-4370-a2e1-78995e850dd0');
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
 
+    .background-img{
+        position: absolute;
+        z-index: -1;
+        top: 0%;
+        width: 100%;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
 
     .gird-layout{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-auto-rows: auto;
         grid-gap: 1rem;
-
 
         .left-div{
             border-radius: 4.37417px;
