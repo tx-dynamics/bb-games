@@ -30,6 +30,7 @@ function MainScreen() {
   const [B2selectedColor, setB2SelectedColor] = useState('yellow')
   const [timer, settimer] = useState('60')
   const [lock, setLock] = useState(false)
+  const [RedPosition, setRedPosition] = useState(Math.random())
   let navigate = useNavigate();
 
 
@@ -127,6 +128,7 @@ function MainScreen() {
       window.sessionStorage.setItem('B2selectedColor','green')
       setTimeout(() => {
         if(shape === 'Box'){
+          setRedPosition(Math.random())
           setLock(false)
           setShape('Triangle')
           setmessage('You have to play a quick game to enter in the project')
@@ -137,6 +139,7 @@ function MainScreen() {
           window.sessionStorage.setItem('B1selectedColor', 'yellow')
           window.sessionStorage.setItem('B2selectedColor', 'yellow')
         }else if(shape === 'Triangle'){
+          setRedPosition(Math.random())
           setLock(false)
           setShape('Circle')
           setmessage('You have to play a quick game to enter in the project')
@@ -147,6 +150,7 @@ function MainScreen() {
           window.sessionStorage.setItem('B1selectedColor', 'yellow')
           window.sessionStorage.setItem('B2selectedColor', 'yellow')
         }else if(shape === 'Circle'){
+          setRedPosition(Math.random())
           setLock(false)
           setShape('Polygon')
           setmessage('You have to play a quick game to enter in the project')
@@ -157,6 +161,7 @@ function MainScreen() {
           window.sessionStorage.setItem('B1selectedColor', 'yellow')
           window.sessionStorage.setItem('B2selectedColor', 'yellow')
         }else if(shape === 'Polygon'){
+          setRedPosition(Math.random())
           setLock(false)
           setShape('Pentagon')
           setmessage('You have to play a quick game to enter in the project')
@@ -227,154 +232,321 @@ function MainScreen() {
                       <p><img className='hover-effect' src={dropdown} alt='dropdown icon'/></p>
                       {
                         shape === 'Box' ? 
-                        <div className='shapes-div'>
+                        <div>
                           {
-                            lock ?
-                            <div className={`box ${B1selectedColor}`}/> :
-                            <div onClick={() => handleColor('red')} className={`box ${B1selectedColor}`}/>
+                            RedPosition >= 0.5 ?
+                            <div className='shapes-div'>
+                              {
+                                lock ?
+                                <div className={`box ${B1selectedColor}`}/> :
+                                <div onClick={() => handleColor('red')} className={`box ${B1selectedColor}`}/>
+                              }
+                              <div className='spacer'/>
+                              {
+                                lock ?
+                                <div className={`box ${B2selectedColor}`}/> :
+                                <div onClick={() => handleColor('green')} className={`box ${B2selectedColor}`}/>
+                              }
+                            </div> : 
+                            <div className='shapes-div'>
+                              {
+                                lock ?
+                                <div className={`box ${B2selectedColor}`}/> :
+                                <div onClick={() => handleColor('green')} className={`box ${B2selectedColor}`}/>
+                              }
+                              <div className='spacer'/>
+                              {
+                                lock ?
+                                <div className={`box ${B1selectedColor}`}/> :
+                                <div onClick={() => handleColor('red')} className={`box ${B1selectedColor}`}/>
+                              }
+                            </div>
                           }
-                          <div className='spacer'/>
-                          {
-                            lock ?
-                            <div className={`box ${B2selectedColor}`}/> :
-                            <div onClick={() => handleColor('green')} className={`box ${B2selectedColor}`}/>
-                          }
+                          
                           
                         </div> : 
                         <div>
                           {
                             shape === 'Triangle' ? 
-                            <div className='shapes-div'>
-                              {
-                                lock ?
-                                <div>
-                                  {
-                                    B1selectedColor === 'yellow' ?
-                                    <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
-                                    <img className='triangle' src={redTriangle} alt='redTriangle'/>
-                                  }
-                                </div> :
-                                <div>
-                                  {
-                                    B1selectedColor === 'yellow' ?
-                                    <img className='triangle' onClick={() => handleColor('red')} src={yellowTriangle} alt='yellowTriangle'/> :
-                                    <img className='triangle' onClick={() => handleColor('red')} src={redTriangle} alt='redTriangle'/>
-                                  }
-                                </div>
-                              }
-                              <div className='spacer'/>
-                              {
-                                lock ?
-                                <div>
-                                  {
-                                    B2selectedColor === 'yellow' ?
-                                    <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
-                                    <img className='triangle' src={TriangleGreen} alt='greenTriangle'/>
-                                  }
-                                </div> :
-                                <div>
-                                  {
-                                    B2selectedColor === 'green' ?
-                                    <img className='triangle' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
-                                    <img className='triangle' onClick={() => handleColor('green')} src={yellowTriangle} alt='yellowTriangle'/>
-                                  }
-                                </div>
-                              }
-                              
-                            </div> : 
                             <div>
                               {
-                                shape === 'Circle' ?
+                                RedPosition >= 0.5 ?
                                 <div className='shapes-div'>
                                   {
                                     lock ?
-                                    <div className={`circle ${B1selectedColor}`}/> :
-                                    <div onClick={() => handleColor('red')} className={`circle ${B1selectedColor}`}/>
+                                    <div>
+                                      {
+                                        B1selectedColor === 'yellow' ?
+                                        <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
+                                        <img className='triangle' src={redTriangle} alt='redTriangle'/>
+                                      }
+                                    </div> :
+                                    <div>
+                                      {
+                                        B1selectedColor === 'yellow' ?
+                                        <img className='triangle' onClick={() => handleColor('red')} src={yellowTriangle} alt='yellowTriangle'/> :
+                                        <img className='triangle' onClick={() => handleColor('red')} src={redTriangle} alt='redTriangle'/>
+                                      }
+                                    </div>
                                   }
                                   <div className='spacer'/>
                                   {
                                     lock ?
-                                    <div className={`circle ${B2selectedColor}`}/> :
-                                    <div onClick={() => handleColor('green')} className={`circle ${B2selectedColor}`}/>
+                                    <div>
+                                      {
+                                        B2selectedColor === 'yellow' ?
+                                        <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
+                                        <img className='triangle' src={TriangleGreen} alt='greenTriangle'/>
+                                      }
+                                    </div> :
+                                    <div>
+                                      {
+                                        B2selectedColor === 'green' ?
+                                        <img className='triangle' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
+                                        <img className='triangle' onClick={() => handleColor('green')} src={yellowTriangle} alt='yellowTriangle'/>
+                                      }
+                                    </div>
                                   }
+                                </div> :
+                                <div className='shapes-div'>
+                                  {
+                                    lock ?
+                                    <div>
+                                      {
+                                        B2selectedColor === 'yellow' ?
+                                        <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
+                                        <img className='triangle' src={TriangleGreen} alt='greenTriangle'/>
+                                      }
+                                    </div> :
+                                    <div>
+                                      {
+                                        B2selectedColor === 'green' ?
+                                        <img className='triangle' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
+                                        <img className='triangle' onClick={() => handleColor('green')} src={yellowTriangle} alt='yellowTriangle'/>
+                                      }
+                                    </div>
+                                  }
+                                  <div className='spacer'/>
+                                  {
+                                    lock ?
+                                    <div>
+                                      {
+                                        B1selectedColor === 'yellow' ?
+                                        <img className='triangle' src={yellowTriangle} alt='yellowTriangle'/> :
+                                        <img className='triangle' src={redTriangle} alt='redTriangle'/>
+                                      }
+                                    </div> :
+                                    <div>
+                                      {
+                                        B1selectedColor === 'yellow' ?
+                                        <img className='triangle' onClick={() => handleColor('red')} src={yellowTriangle} alt='yellowTriangle'/> :
+                                        <img className='triangle' onClick={() => handleColor('red')} src={redTriangle} alt='redTriangle'/>
+                                      }
+                                    </div>
+                                  }
+                                  
+                                </div>
+                              }
+                            </div> : 
+                            <div>
+                              {
+                                shape === 'Circle' ?
+                                <div>
+                                  <div>
+                                    {
+                                      RedPosition >= 0.5 ? 
+                                      <div className='shapes-div'>
+                                        {
+                                          lock ?
+                                          <div className={`circle ${B1selectedColor}`}/> :
+                                          <div onClick={() => handleColor('red')} className={`circle ${B1selectedColor}`}/>
+                                        }
+                                        <div className='spacer'/>
+                                        {
+                                          lock ?
+                                          <div className={`circle ${B2selectedColor}`}/> :
+                                          <div onClick={() => handleColor('green')} className={`circle ${B2selectedColor}`}/>
+                                        }
+                                      </div> :
+                                      <div className='shapes-div'>
+                                        {
+                                          lock ?
+                                          <div className={`circle ${B2selectedColor}`}/> :
+                                          <div onClick={() => handleColor('green')} className={`circle ${B2selectedColor}`}/>
+                                        }
+                                        <div className='spacer'/>
+                                        {
+                                          lock ?
+                                          <div className={`circle ${B1selectedColor}`}/> :
+                                          <div onClick={() => handleColor('red')} className={`circle ${B1selectedColor}`}/>
+                                        }
+                                      </div>
+                                    }
+                                  </div>
                                 </div> : 
                                 <div>
                                   {
                                     shape === 'Polygon' ?
-                                    <div className='shapes-div'>
-                                      {
-                                        lock ?
-                                        <div>
-                                          {
-                                            B1selectedColor === 'yellow' ?
-                                            <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
-                                            <img className='polygon' src={PolygonRed} alt='PolygonRed'/>
-                                          }
-                                        </div> :
-                                        <div>
-                                          {
-                                            B1selectedColor === 'yellow' ?
-                                            <img className='polygon' onClick={() => handleColor('red')} src={PolygonYellow} alt='PolygonYellow'/> :
-                                            <img className='polygon' onClick={() => handleColor('red')} src={PolygonRed} alt='PolygonRed'/>
-                                          }
-                                        </div>
-                                      }
-                                      <div className='spacer'/>
-                                      {
-                                        lock ?
-                                        <div>
-                                          {
-                                            B2selectedColor === 'yellow' ?
-                                            <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
-                                            <img className='polygon' src={PolygonGreen} alt='PolygonGreen'/>
-                                          }
-                                        </div> :
-                                        <div>
-                                          {
-                                            B2selectedColor === 'green' ?
-                                            <img className='polygon' onClick={() => handleColor('green')} src={PolygonGreen} alt='PolygonGreen'/> :
-                                            <img className='polygon' onClick={() => handleColor('green')} src={PolygonYellow} alt='PolygonYellow'/>
-                                          }
-                                        </div>
-                                      }
+                                    <div>
+                                    {
+                                      RedPosition >= 0.5 ?
+                                      <div className='shapes-div'>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
+                                              <img className='polygon' src={PolygonRed} alt='PolygonRed'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='polygon' onClick={() => handleColor('red')} src={PolygonYellow} alt='PolygonYellow'/> :
+                                              <img className='polygon' onClick={() => handleColor('red')} src={PolygonRed} alt='PolygonRed'/>
+                                            }
+                                          </div>
+                                        }
+                                        <div className='spacer'/>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B2selectedColor === 'yellow' ?
+                                              <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
+                                              <img className='polygon' src={PolygonGreen} alt='PolygonGreen'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B2selectedColor === 'green' ?
+                                              <img className='polygon' onClick={() => handleColor('green')} src={PolygonGreen} alt='PolygonGreen'/> :
+                                              <img className='polygon' onClick={() => handleColor('green')} src={PolygonYellow} alt='PolygonYellow'/>
+                                            }
+                                          </div>
+                                        }
+                                      </div> : 
+                                      <div className='shapes-div'>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B2selectedColor === 'yellow' ?
+                                              <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
+                                              <img className='polygon' src={PolygonGreen} alt='PolygonGreen'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B2selectedColor === 'green' ?
+                                              <img className='polygon' onClick={() => handleColor('green')} src={PolygonGreen} alt='PolygonGreen'/> :
+                                              <img className='polygon' onClick={() => handleColor('green')} src={PolygonYellow} alt='PolygonYellow'/>
+                                            }
+                                          </div>
+                                        }
+                                        <div className='spacer'/>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='polygon' src={PolygonYellow} alt='PolygonYellow'/> :
+                                              <img className='polygon' src={PolygonRed} alt='PolygonRed'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='polygon' onClick={() => handleColor('red')} src={PolygonYellow} alt='PolygonYellow'/> :
+                                              <img className='polygon' onClick={() => handleColor('red')} src={PolygonRed} alt='PolygonRed'/>
+                                            }
+                                          </div>
+                                        }
+                                      </div>
+                                    }
+                                      
                                       
                                     </div> : 
-                                    <div className='shapes-div'>
-                                      {
-                                        lock ?
-                                        <div>
-                                          {
-                                            B1selectedColor === 'yellow' ?
-                                            <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
-                                            <img className='pentagon' src={PentagonRed} alt='PentagonRed'/>
-                                          }
-                                        </div> :
-                                        <div>
-                                          {
-                                            B1selectedColor === 'yellow' ?
-                                            <img className='pentagon' onClick={() => handleColor('red')} src={PentagonYellow} alt='PentagonYellow'/> :
-                                            <img className='pentagon' onClick={() => handleColor('red')} src={PentagonRed} alt='PentagonRed'/>
-                                          }
-                                        </div>
-                                      }
-                                      <div className='spacer'/>
-                                      {
-                                        lock ?
-                                        <div>
-                                          {
-                                            B2selectedColor === 'yellow' ?
-                                            <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
-                                            <img className='pentagon' src={PentagonGreen} alt='PentagonGreen'/>
-                                          }
-                                        </div> :
-                                        <div>
-                                          {
-                                            B2selectedColor === 'green' ?
-                                            <img className='pentagon' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
-                                            <img className='pentagon' onClick={() => handleColor('green')} src={PentagonYellow} alt='PentagonGreen'/>
-                                          }
-                                        </div>
-                                      }
+                                    <div>
+                                    {
+                                      RedPosition >= 0.5 ?
+                                      <div className='shapes-div'>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
+                                              <img className='pentagon' src={PentagonRed} alt='PentagonRed'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='pentagon' onClick={() => handleColor('red')} src={PentagonYellow} alt='PentagonYellow'/> :
+                                              <img className='pentagon' onClick={() => handleColor('red')} src={PentagonRed} alt='PentagonRed'/>
+                                            }
+                                          </div>
+                                        }
+                                        <div className='spacer'/>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B2selectedColor === 'yellow' ?
+                                              <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
+                                              <img className='pentagon' src={PentagonGreen} alt='PentagonGreen'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B2selectedColor === 'green' ?
+                                              <img className='pentagon' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
+                                              <img className='pentagon' onClick={() => handleColor('green')} src={PentagonYellow} alt='PentagonGreen'/>
+                                            }
+                                          </div>
+                                        }
+                                      </div> :
+                                      <div className='shapes-div'>
+                                        { 
+                                          lock ?
+                                          <div>
+                                            {
+                                              B2selectedColor === 'yellow' ?
+                                              <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
+                                              <img className='pentagon' src={PentagonGreen} alt='PentagonGreen'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B2selectedColor === 'green' ?
+                                              <img className='pentagon' onClick={() => handleColor('green')} src={TriangleGreen} alt='greenTriangle'/> :
+                                              <img className='pentagon' onClick={() => handleColor('green')} src={PentagonYellow} alt='PentagonGreen'/>
+                                            }
+                                          </div>
+                                        }
+                                        <div className='spacer'/>
+                                        {
+                                          lock ?
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='pentagon' src={PentagonYellow} alt='PentagonYellow'/> :
+                                              <img className='pentagon' src={PentagonRed} alt='PentagonRed'/>
+                                            }
+                                          </div> :
+                                          <div>
+                                            {
+                                              B1selectedColor === 'yellow' ?
+                                              <img className='pentagon' onClick={() => handleColor('red')} src={PentagonYellow} alt='PentagonYellow'/> :
+                                              <img className='pentagon' onClick={() => handleColor('red')} src={PentagonRed} alt='PentagonRed'/>
+                                            }
+                                          </div>
+                                        }
+                                      </div>
+                                    }
+                                      
                                       
                                     </div>
                                   }
