@@ -6,6 +6,10 @@ import Logo from '../Game/MainScreen/Images/Logo.png'
 import trash from './images/trash.png'
 import file from './images/file.png'
 import twitter from './images/twitter.png'
+import ProgressiveImage from "react-progressive-graceful-image";
+import OrignalBackground from './images/background.png'
+import blurImg from './images/blur_background.png'
+
 
 function Index() {
     
@@ -20,6 +24,15 @@ function Index() {
     
     return (
         <div>
+            <ProgressiveImage className='background-img' src={OrignalBackground} placeholder={blurImg}>
+            {(src) => (
+                <img
+                className='background-img'
+                src={src}
+                alt="sea beach"
+                />
+            )}
+            </ProgressiveImage>
             <div className='landing-page-outer-div'>
                 <div>
                     <div className='landing-page-inner-div'>
