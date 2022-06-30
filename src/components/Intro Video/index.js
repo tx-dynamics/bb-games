@@ -57,7 +57,7 @@ export default function Index() {
     <div>
         {finish && (<Navigate to="/home" replace={true} />)}
         <div className='video-container'>
-            <video id='videoPlayer' autoPlay onEnded={() => {handleVideo()}}>
+            <video id='video_id' autoPlay onEnded={() => {handleVideo()}}>
                 <source id='videoSource' src={
                     navigator.connection.effectiveType === '4g' ? video360 : originalVideo
                 } type="video/mp4"/>
