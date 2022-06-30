@@ -58,7 +58,7 @@ function MainScreen() {
 
     // This is where you need to adjust if 
     // you entend to add more time
-    const t = window.sessionStorage.getItem('time') === null ? 5 : parseInt(window.sessionStorage.getItem('time'))
+    const t = window.sessionStorage.getItem('time') === null ? 60 : parseInt(window.sessionStorage.getItem('time'))
     deadline.setSeconds(deadline.getSeconds() + t);
     return deadline;
   }
@@ -67,7 +67,7 @@ function MainScreen() {
     const total = Date.parse(e) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
     if(seconds <= 0){
-      settimer('5')
+      settimer('60')
       // window.sessionStorage.setItem('B1selectedColor', 'yellow')
       // const Shape = window.sessionStorage.getItem('shape') === null ? 'Box' : window.sessionStorage.getItem('shape')
       window.sessionStorage.setItem('phase', 'Game')
