@@ -12,7 +12,7 @@ import dropdown from './Images/dropdown_icons.png'
 import PlayText from './Images/PlayText.png'
 import LoseText from './Images/LoseText.png'
 import EnterText from './Images/EnterText.gif'
-// import ProgressiveImage from "react-progressive-graceful-image";
+import ProgressiveImage from "react-progressive-graceful-image";
 
 function MainScreen() {
   const Ref = useRef(null);
@@ -212,7 +212,7 @@ function MainScreen() {
 
   return (
     <div className='mainScreen-outer-div'>
-        {/* <ProgressiveImage className='background-img' src={OrignalBackground} placeholder={blurImg}>
+        <ProgressiveImage className='background-img' src={OrignalBackground} placeholder={blurImg}>
           {(src) => (
             <img
               className='background-img'
@@ -220,7 +220,7 @@ function MainScreen() {
               alt="sea beach"
             />
           )}
-          </ProgressiveImage> */}
+          </ProgressiveImage>
         <div className='gird-layout'>
             <div className='left-div'>
                 <div>
