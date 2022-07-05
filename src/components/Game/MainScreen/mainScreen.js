@@ -66,7 +66,6 @@ function MainScreen() {
   const getTimeRemaining = (e) => {
     const total = Date.parse(e) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
-    console.log(seconds)
     if(seconds <= 0){
       settimer('60')
       // window.sessionStorage.setItem('B1selectedColor', 'yellow')
