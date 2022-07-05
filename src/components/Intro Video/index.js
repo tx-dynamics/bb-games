@@ -18,33 +18,40 @@ export default function Index() {
 
     useEffect(() => {
 
-        if (navigator?.connection && !!navigator?.connection?.effectiveType) {
-            if (/\slow-2g|2g|3g/.test(navigator?.connection?.effectiveType)) {
-                const { rtt, downlink, effectiveType,  saveData } = navigator?.connection;
-                console.log(`Effective network connection type: ${effectiveType}`);
-                console.log(`Downlink Speed/bandwidth estimate: ${downlink}Mb/s`);
-                console.log(`Round-trip time estimate: ${rtt}ms`);
-                console.log(`Data-saver mode on/requested: ${saveData}`);
-                console.log(navigator?.connection?.effectiveType)
+        try {
+
+            if (navigator?.connection && !!navigator?.connection?.effectiveType) {
+                if (/\slow-2g|2g|3g/.test(navigator?.connection?.effectiveType)) {
+                    const { rtt, downlink, effectiveType,  saveData } = navigator?.connection;
+                    console.log(`Effective network connection type: ${effectiveType}`);
+                    console.log(`Downlink Speed/bandwidth estimate: ${downlink}Mb/s`);
+                    console.log(`Round-trip time estimate: ${rtt}ms`);
+                    console.log(`Data-saver mode on/requested: ${saveData}`);
+                    console.log(navigator?.connection?.effectiveType)
+                    setfinish(true)
+                }else{
+                    const { rtt, downlink, effectiveType,  saveData } = navigator?.connection;
+                    console.log(`Effective network connection type: ${effectiveType}`);
+                    console.log(`Downlink Speed/bandwidth estimate: ${downlink}Mb/s`);
+                    console.log(`Round-trip time estimate: ${rtt}ms`);
+                    console.log(`Data-saver mode on/requested: ${saveData}`);
+                    console.log(navigator?.connection?.effectiveType)
+                }
+            }
+    
+            if(window.sessionStorage.getItem('initial')){
                 setfinish(true)
             }else{
-                const { rtt, downlink, effectiveType,  saveData } = navigator?.connection;
-                console.log(`Effective network connection type: ${effectiveType}`);
-                console.log(`Downlink Speed/bandwidth estimate: ${downlink}Mb/s`);
-                console.log(`Round-trip time estimate: ${rtt}ms`);
-                console.log(`Data-saver mode on/requested: ${saveData}`);
-                console.log(navigator?.connection?.effectiveType)
+                window.onload = function () {               
+                    window.sessionStorage.setItem('initial', true) 
+                    document.onkeydown = handleKeys
+                }
             }
+            
+        } catch (error) {
+            console.log(error)
         }
-
-        if(window.sessionStorage.getItem('initial')){
-            setfinish(true)
-        }else{
-            window.onload = function () {               
-                window.sessionStorage.setItem('initial', true) 
-                document.onkeydown = handleKeys
-            }
-        }
+        
     }, [])
 
     
