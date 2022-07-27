@@ -214,6 +214,61 @@
     }
 }
 
+.MuiOutlinedInput-notchedOutline {
+    border-color: #FEC960 !important;
+}
+
+.MuiFormLabel-root {
+    color: white !important;
+    padding: 0;
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 600 !important;
+    line-height: 1;
+    letter-spacing: 0.00938em;
+}
+
+.MuiInputBase-input {
+    font: inherit;
+    color: #ffffff !important;
+    width: 100%;
+    border: 0;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 7px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    letter-spacing: inherit;
+    animation-duration: 10ms;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.model-btn-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+
+    button{
+        color: white;
+        background: linear-gradient(90deg, #99243D 0%, #FBC761 364.91%);
+        border-radius: 15px;
+        width: 280px;
+        height: 50px;
+        // padding: 20px 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // div:hover{
+    //     cursor: pointer;
+    // }
+}
+
 .actions-div{
     display: flex;
     justify-content: center;

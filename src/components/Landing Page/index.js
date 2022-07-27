@@ -9,14 +9,42 @@ import twitter from './images/twitter.png'
 import ProgressiveImage from "react-progressive-graceful-image";
 import OrignalBackground from './images/background.png'
 import blurImg from './images/blur_background.png'
+import { makeStyles } from '@material-ui/core/styles';
+import {
+    Modal,
+    Backdrop,
+    TextField,
+    Fade,
+    Box,
+    FormHelperText,
+    Button
+} from '@material-ui/core';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper: {
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      border: '1px solid black',
+      borderRadius: '10px',
+      padding: theme.spacing(3, 10, 3),
+      color: 'white'
+    },
+}));
 
 
 function Index() {
-    
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
 
-    const handleMintNFT = () => {
-
-    }
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleWhiteList = () => {
         
@@ -74,7 +102,7 @@ function Index() {
                         </div>
                     </div>
                     <div className='center-buttons-div'>
-                        <div onClick={handleMintNFT}><span>MINT YOUR NFT</span></div>
+                        <div onClick={() => {setOpen(true)}}><span>MINT YOUR NFT</span></div>
                         <span className='spacer'/>
                         <div onClick={handleWhiteList}><span>WHITE LIST</span></div>
                     </div>
@@ -94,6 +122,104 @@ function Index() {
                     </div>
                 </div>
             </div>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                <div className={classes.paper}>
+                    <Formik
+                        initialValues={{
+                            wallet: '',
+                            userCount: ''
+                        }}
+                        validationSchema={Yup.object().shape({
+                            wallet: Yup.string().required(),
+                            userCount: Yup.string().required(),
+                        })}
+                        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+                            setSubmitting(true)
+                            console.log(values)
+
+                            // After user enter the details process code goes here
+
+                            handleClose()
+                        }}
+                    >
+                        {({
+                            errors,
+                            handleBlur,
+                            handleChange,
+                            handleSubmit,
+                            isSubmitting,
+                            touched,
+                            values,
+                            setFieldValue
+                        }) => (
+                            <form
+                                noValidate
+                                onSubmit={handleSubmit}
+                            >
+                                <TextField
+                                    error={Boolean(touched.wallet && errors.wallet)}
+                                    fullWidth
+                                    helperText={touched.wallet && errors.wallet}
+                                    label="Wallet Address"
+                                    margin="normal"
+                                    name="wallet"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    type="wallet"
+                                    value={values.wallet}
+                                    variant="outlined"
+                                />
+
+                                <TextField
+                                    error={Boolean(touched.userCount && errors.userCount)}
+                                    fullWidth
+                                    helperText={touched.userCount && errors.userCount}
+                                    label="Count of NFT Users to MINT"
+                                    margin="normal"
+                                    name="userCount"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    type="userCount"
+                                    value={values.userCount}
+                                    variant="outlined"
+                                />
+
+                                <Box className='model-btn-div' mt={2}>
+                                    <Button
+                                        color="secondary"
+                                        disabled={isSubmitting}
+                                        fullWidth
+                                        size="large"
+                                        type="submit"
+                                        variant="contained"
+                                    >
+                                        Submit
+                                    </Button>
+                                    {errors.submit && (
+                                        <Box mt={3}>
+                                            <FormHelperText error>{errors.submit}</FormHelperText>
+                                        </Box>
+                                    )}
+                                </Box>
+                            </form>
+                        )}
+                    </Formik>
+                    
+                </div>
+                </Fade>
+            </Modal>
         </div>
     );
 }
